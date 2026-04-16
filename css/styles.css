@@ -684,7 +684,7 @@ button:hover {
     }
 
     .side-img {
-        width: 120px;
+        width: 130px;
         max-width: 40vw;
     }
 
@@ -742,8 +742,8 @@ button:hover {
 
 @media (max-width: 420px) {
     .side-img {
-        width: 66px;
-        max-width: 66px;
+        width: 80px;
+        max-width: 80px;
     }
 
     .wepa {
