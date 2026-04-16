@@ -141,7 +141,7 @@ button:hover {
     justify-content: center;
     gap: 10px;
     width: 100%;
-    padding: 24px 0;
+    padding: 34px 0;
 }
 .side-img {
     width: 300px;
@@ -688,6 +688,10 @@ button:hover {
         max-width: 40vw;
     }
 
+    .hero-row .side-img:last-child {
+        display: none;
+    }
+
     .jumbotron {
         padding: 24px 4vw;
         max-width: 100%;
@@ -755,5 +759,4 @@ button:hover {
         bottom: 12px;
     }
 }
-
 
