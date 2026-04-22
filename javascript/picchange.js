@@ -1,150 +1,97 @@
-// Image cycling functionality for the page hero sections.
-// Each page has two hero images that rotate automatically to create motion.
+// Image cycling functionality for the hero sections.
+// Each content area uses a pair of decorative side images that swap between
+// two frames to create a simple animated effect.
 
-// Home hero image cycle
-// Continuous side-image cycler for the home page hero section.
-document.addEventListener('DOMContentLoaded', function() {
-    // Array of trumpet images facing right
-    const leftImgs = [
-        'images/home/trumpetfacingright.png',
-        'images/home/trumpetfacingrightdown.png'
-    ];
-    // Array of trumpet images facing left
-    const rightImgs = [
-        'images/home/trumpetfacingleft.png',
-        'images/home/trumpetfacingleftdown.png'
-    ];
-
-    // Track current image index for left and right trumpets
+// Starts a repeating image swap for one left/right image pair.
+// `leftId` and `rightId` are the image element ids on the page.
+// `leftImages` and `rightImages` are ordered lists of image file paths that
+// the function cycles through forever.
+function startImageCycle(leftId, rightId, leftImages, rightImages) {
+    const leftElement = document.getElementById(leftId);
+    const rightElement = document.getElementById(rightId);
     let leftIndex = 0;
     let rightIndex = 0;
 
-    // Get reference to both trumpet image elements
-    const leftEl = document.getElementById('pic1');
-    const rightEl = document.getElementById('pic2');
-
-    // Function to cycle through both trumpet images at the same time
-    function cycleImages() {
-        // Move to next image in both arrays, loop back to start when reaching end
-        leftIndex = (leftIndex + 1) % leftImgs.length;
-        rightIndex = (rightIndex + 1) % rightImgs.length;
-
-        // Update both images
-        leftEl.src = leftImgs[leftIndex];
-        rightEl.src = rightImgs[rightIndex];
+    if (!leftElement || !rightElement) {
+        return;
     }
 
-    // Change both images simultaneously every 500 milliseconds with no fading
-    setInterval(cycleImages, 450);
-});
-
-// History
-// Continuous side-image cycler
-document.addEventListener('DOMContentLoaded', function() {
-    // Array of trumpet images facing right
-    const leftImgs = [
-        'images/history/coquifacingleftup.png',
-        'images/history/coquifacingleftdown.png'
-    ];
-    // Array of trumpet images facing left
-    const rightImgs = [
-        'images/history/coquifacingrightup.png',
-        'images/history/coquifacingrightdown.png'
-    ];
-
-    // Track current image index for left and right trumpets
-    let leftIndex = 0;
-    let rightIndex = 0;
-
-    // Get reference to both trumpet image elements
-    const leftEl = document.getElementById('pic1history');
-    const rightEl = document.getElementById('pic2history');
-
-    // Function to cycle through both trumpet images at the same time
+    // Move both images to the next frame and loop back to the beginning when
+    // the end of either image list is reached.
     function cycleImages() {
-        // Move to next image in both arrays, loop back to start when reaching end
-        leftIndex = (leftIndex + 1) % leftImgs.length;
-        rightIndex = (rightIndex + 1) % rightImgs.length;
+        leftIndex = leftIndex + 1;
+        rightIndex = rightIndex + 1;
 
-        // Update both images
-        leftEl.src = leftImgs[leftIndex];
-        rightEl.src = rightImgs[rightIndex];
+        if (leftIndex >= leftImages.length) {
+            leftIndex = 0;
+        }
+
+        if (rightIndex >= rightImages.length) {
+            rightIndex = 0;
+        }
+
+        leftElement.src = leftImages[leftIndex];
+        rightElement.src = rightImages[rightIndex];
     }
 
-    // Change both images simultaneously every 500 milliseconds with no fading
     setInterval(cycleImages, 450);
-});
+}
 
-// Music
-// Continuous side-image cycler
-document.addEventListener('DOMContentLoaded', function() {
-    // Array of trumpet images facing right
-    const leftImgs = [
-        'images/music/bongofacingleftup.png',
-        'images/music/bongofacingleftdown.png'
-    ];
-    // Array of trumpet images facing left
-    const rightImgs = [
-        'images/music/bongofacingrightup.png',
-        'images/music/bongofacingrightdown.png'
-    ];
+// Start the animated image pairs for each page once the DOM is ready.
+document.addEventListener('DOMContentLoaded', function () {
+    // Home hero instruments.
+    startImageCycle(
+        'pic1',
+        'pic2',
+        [
+            'images/home/trumpetfacingright.png',
+            'images/home/trumpetfacingrightdown.png'
+        ],
+        [
+            'images/home/trumpetfacingleft.png',
+            'images/home/trumpetfacingleftdown.png'
+        ]
+    );
 
-    // Track current image index for left and right trumpets
-    let leftIndex = 0;
-    let rightIndex = 0;
+    // History page coqui images.
+    startImageCycle(
+        'pic1history',
+        'pic2history',
+        [
+            'images/history/coquifacingleftup.png',
+            'images/history/coquifacingleftdown.png'
+        ],
+        [
+            'images/history/coquifacingrightup.png',
+            'images/history/coquifacingrightdown.png'
+        ]
+    );
 
-    // Get reference to both trumpet image elements
-    const leftEl = document.getElementById('pic1music');
-    const rightEl = document.getElementById('pic2music');
+    // Music page bongo images.
+    startImageCycle(
+        'pic1music',
+        'pic2music',
+        [
+            'images/music/bongofacingleftup.png',
+            'images/music/bongofacingleftdown.png'
+        ],
+        [
+            'images/music/bongofacingrightup.png',
+            'images/music/bongofacingrightdown.png'
+        ]
+    );
 
-    // Function to cycle through both trumpet images at the same time
-    function cycleImages() {
-        // Move to next image in both arrays, loop back to start when reaching end
-        leftIndex = (leftIndex + 1) % leftImgs.length;
-        rightIndex = (rightIndex + 1) % rightImgs.length;
-
-        // Update both images
-        leftEl.src = leftImgs[leftIndex];
-        rightEl.src = rightImgs[rightIndex];
-    }
-
-    // Change both images simultaneously every 500 milliseconds with no fading
-    setInterval(cycleImages, 450);
-});
-
-// Art
-// Continuous side-image cycler
-document.addEventListener('DOMContentLoaded', function() {
-    // Array of trumpet images facing right
-    const leftImgs = [
-        'images/art/paintbrushfacingleftup.png',
-        'images/art/paintbrushfacingleftdown.png'
-    ];
-    // Array of trumpet images facing left
-    const rightImgs = [
-        'images/art/paintbrushfacingrightup.png',
-        'images/art/paintbrushfacingrightdown.png'
-    ];
-
-    // Track current image index for left and right trumpets
-    let leftIndex = 0;
-    let rightIndex = 0;
-
-    // Get reference to both trumpet image elements
-    const leftEl = document.getElementById('pic1art');
-    const rightEl = document.getElementById('pic2art');
-
-    // Function to cycle through both trumpet images at the same time
-    function cycleImages() {
-        // Move to next image in both arrays, loop back to start when reaching end
-        leftIndex = (leftIndex + 1) % leftImgs.length;
-        rightIndex = (rightIndex + 1) % rightImgs.length;
-
-        // Update both images
-        leftEl.src = leftImgs[leftIndex];
-        rightEl.src = rightImgs[rightIndex];
-    }
-
-    // Change both images simultaneously every 500 milliseconds with no fading
-    setInterval(cycleImages, 450);
+    // Art page paintbrush images.
+    startImageCycle(
+        'pic1art',
+        'pic2art',
+        [
+            'images/art/paintbrushfacingleftup.png',
+            'images/art/paintbrushfacingrightdown.png'
+        ],
+        [
+            'images/art/paintbrushfacingrightup.png',
+            'images/art/paintbrushfacingleftdown.png'
+        ]
+    );
 });

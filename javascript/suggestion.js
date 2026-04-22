@@ -1,78 +1,100 @@
 // Suggestion form handler for the Puerto Rico website.
-// Manages form submission, validation, confirmation feedback, and a separate 'send another suggestion' flow.
+// This file manages the suggestion form UI, sends submissions to the Google
+// Apps Script endpoint, and controls the confirmation / reset flow.
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("suggestionForm");
-  const submitBtn = document.getElementById("submitBtn");
-  const anotherSuggestionBtn = document.getElementById("anotherSuggestionBtn");
-  if (!form || !submitBtn || !anotherSuggestionBtn) return;
+// Wait for the DOM before wiring up the form and buttons.
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('suggestionForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const anotherSuggestionBtn = document.getElementById('anotherSuggestionBtn');
 
-  // Prevent form submission completely
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    return false;
-  });
+    if (!form || !submitBtn || !anotherSuggestionBtn) {
+        return;
+    }
 
-  // Handle "Send Another Suggestion" button
-anotherSuggestionBtn.addEventListener("click", () => {
-        // Reset the form and hide the confirmation banner and retake action button.
+    // Prevent the browser's normal form submission because the form is sent
+    // manually with `fetch` instead.
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        return false;
+    });
+
+    // Lets the user clear the confirmation state and open a blank form to
+    // send another idea.
+    anotherSuggestionBtn.addEventListener('click', function () {
+        const confirmationBanner = document.getElementById('confirmationBanner');
+
         form.reset();
-        form.style.display = "block";
-        const confirmationBanner = document.getElementById("confirmationBanner");
-        if (confirmationBanner) confirmationBanner.style.display = "none";
-        anotherSuggestionBtn.style.display = "none";
-      });
+        form.style.display = 'block';
 
-  submitBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+        if (confirmationBanner) {
+            confirmationBanner.style.display = 'none';
+        }
 
-    const nameEl = document.getElementById("name");
-    const suggestionEl = document.getElementById("suggestion");
-    const commentsEl = document.getElementById("comments");
+        anotherSuggestionBtn.style.display = 'none';
+    });
 
-    if (!nameEl || !suggestionEl || !commentsEl) {
-      alert("Form elements not found.");
-      return;
-    }
+    // Collects the current field values, sends them to the Apps Script URL,
+    // and swaps the form view to a confirmation state after success.
+    submitBtn.addEventListener('click', async function (event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-    const name = encodeURIComponent(nameEl.value.trim());
-    const suggestion = encodeURIComponent(suggestionEl.value.trim());
-    const comments = encodeURIComponent(commentsEl.value.trim());
+        const nameEl = document.getElementById('name');
+        const suggestionEl = document.getElementById('suggestion');
+        const commentsEl = document.getElementById('comments');
 
-    // Build the URL for the Google Apps Script backend that stores suggestions.
-    const fullURL = `https://script.google.com/macros/s/AKfycbw15mF1Oik5qbwytc36ryT4Z1Gx3PMug0rf_JO3pZlTGv_nPo-wTz-EjVmiiCSZuBn8/exec?Name=${name}&Suggestion=${suggestion}&Comments=${comments}`;
+        if (!nameEl || !suggestionEl || !commentsEl) {
+            alert('Form elements not found.');
+            return;
+        }
 
-    try {
-      // Send the suggestion via GET and wait for the backend response.
-      const response = await fetch(fullURL, { method: "GET", redirect: "follow" });
-      const text = await response.text();
+        // Encode each value so it is safe to place inside a URL query string.
+        const name = encodeURIComponent(nameEl.value.trim());
+        const suggestion = encodeURIComponent(suggestionEl.value.trim());
+        const comments = encodeURIComponent(commentsEl.value.trim());
 
-      // Expect the Apps Script to return exactly "Success"
-      if (text.trim() === "Success") {
-        form.style.display = "none";
-        const confirmationBanner = document.getElementById("confirmationBanner");
-        if (confirmationBanner) confirmationBanner.style.display = "block";
-        anotherSuggestionBtn.style.display = "block";
-      } else {
-        alert("Server error: " + text);
-      }
-    } catch (error) {
-      console.error("Fetch error:", error);
-      alert("Network error. Please try again later.");
-    }
-  });
+        // Build the full GET request URL expected by the Google Apps Script
+        // backend that stores the submission data.
+        const fullURL = 'https://script.google.com/macros/s/AKfycbw15mF1Oik5qbwytc36ryT4Z1Gx3PMug0rf_JO3pZlTGv_nPo-wTz-EjVmiiCSZuBn8/exec?Name=' + name + '&Suggestion=' + suggestion + '&Comments=' + comments;
+
+        try {
+            // Send the suggestion to the backend and read the returned text.
+            const response = await fetch(fullURL, { method: 'GET', redirect: 'follow' });
+            const text = await response.text();
+
+            // The backend is expected to return the exact word "Success" when
+            // the submission is stored correctly.
+            if (text.trim() === 'Success') {
+                const confirmationBanner = document.getElementById('confirmationBanner');
+
+                form.style.display = 'none';
+
+                if (confirmationBanner) {
+                    confirmationBanner.style.display = 'block';
+                }
+
+                anotherSuggestionBtn.style.display = 'block';
+            } else {
+                alert('Server error: ' + text);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Network error. Please try again later.');
+        }
+    });
 });
 
-// fade in animations for the suggestion section
+// Adds a soft reveal animation to the suggestion section once the page is
+// fully loaded.
+window.addEventListener('load', function () {
+    const cards = document.querySelectorAll('.suggest-section');
 
-// fade in the suggestion section on load
-window.addEventListener('load', () => {
-    document.querySelectorAll('.suggest-section').forEach((card, i) => {
-        setTimeout(() => {
-            card.style.transition = '0.6s';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
+    for (let i = 0; i < cards.length; i++) {
+        setTimeout(function () {
+            cards[i].style.transition = '0.6s';
+            cards[i].style.opacity = '1';
+            cards[i].style.transform = 'translateY(0)';
         }, i * 120);
-    });
+    }
 });

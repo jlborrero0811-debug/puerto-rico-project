@@ -1,25 +1,36 @@
-// Sidebar open/close helpers for the mobile menu.
+// Sidebar open and close helpers.
+// This file exposes the sidebar functions on `window` because the HTML uses
+// them directly in button click handlers.
 
-// Uses safe DOM checks so the functions don't fail if the sidebar element is missing.
-document.addEventListener("DOMContentLoaded", () => {
-    const sidebar = document.getElementById("sidebar");
+// Wait until the page is ready before searching for the sidebar element.
+document.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.getElementById('sidebar');
 
-    // Open the sidebar when the menu button is clicked.
+    // Opens the sidebar menu by adding the CSS class the stylesheet expects.
     window.openSidebar = function () {
-        if (sidebar) sidebar.classList.add("sidebar-open");
+        if (sidebar) {
+            sidebar.classList.add('sidebar-open');
+        }
     };
 
-    // Close the sidebar when clicking outside of it on mobile.
+    // Closes the sidebar menu by removing the open-state CSS class.
     window.closeSidebar = function () {
-        if (sidebar) sidebar.classList.remove("sidebar-open");
+        if (sidebar) {
+            sidebar.classList.remove('sidebar-open');
+        }
     };
 
-    // Close the sidebar whenever a sidebar link is clicked.
-    if (sidebar) {
-        sidebar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                window.closeSidebar();
-            });
+    if (!sidebar) {
+        return;
+    }
+
+    // Every link inside the sidebar also closes the menu after navigation so
+    // the mobile layout does not stay open over the page content.
+    const links = sidebar.querySelectorAll('a');
+
+    for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function () {
+            window.closeSidebar();
         });
     }
 });

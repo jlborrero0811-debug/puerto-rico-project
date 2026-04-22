@@ -14,6 +14,7 @@
         <script src="javascript/spanish.js" defer></script> 
         <script src="javascript/sidebar.js" defer></script> 
         <script src="javascript/data.js" defer></script> 
+        <script src="javascript/account.js" defer></script> 
         <script src="javascript/quiz.js" defer></script> 
         <script src="javascript/routing.js" defer></script> 
         <script src="javascript/suggestion.js" defer></script> 
@@ -65,7 +66,7 @@
             <img id="pic2" class="side-img" src="images/home/trumpetfacingleft.png" alt="Right">
         </div>
 
-        <!-- Sidebar  button -->
+        <!-- Sidebar button -->
         <button class="sidebar" onclick="openSidebar()" aria-label="Open navigation menu">
             ☰
         </button>
@@ -139,9 +140,11 @@
         <!-- Hurricane Maria -->
         <div id="hurricane" class="page">
             <div class="hero-row">
+                <img class="sideimg" src="images/hurricane/hurricaneleft.png" alt="Left">
                 <div class="jumbotron">
                     <h1 class="wepa" id="hurricane-title">Hurricane Maria</h1>
                 </div>
+                <img class="sideimg" src="images/hurricane/hurricaneright.png" alt="Right">
             </div>
             <div class="container">
                 <div id="hurricane-content" class="content-sections">
@@ -177,53 +180,6 @@
             </div>
         </div>
 
-        <!-- Suggestion Form -->
-        <section class="suggest-section">
-            <div class="suggest-card" id="suggestCard">
-                <div class="suggest-header" id="suggestionTitle">
-                    Suggest an Addition
-                </div>
-                <div class="confirm-banner" id="confirmationBanner">
-                    <div style="margin-bottom: 12px;" id="confirmationMessage">
-                        Thanks for your suggestion!
-                    </div>
-                </div>
-                <div class="suggest-body">
-                    <form id="suggestionForm" novalidate>
-                        <label id="labelName" for="name" class="suggest-label">
-                            Your Name
-                        </label>
-
-                        <input id="name" class="suggest-input" type="text" required placeholder="Enter your name">
-
-                        <label id="labelSuggestion" for="suggestion" class="suggest-label">
-                            Addition Suggestion
-                        </label>
-
-                        <input id="suggestion" class="suggest-input" type="text" required placeholder="What should be added?">
-
-                        <label id="labelComments" for="comments" class="suggest-label">
-                            Additional Comments
-                        </label>
-
-                        <input id="comments" class="suggest-input" type="text" placeholder="Why should it be added?">
-
-                        <div class="suggest-actions">
-                            <button id="submitBtn" type="submit" class="btn-primary-site">
-                                Submit Suggestion
-                            </button>
-                            <button id="clearBtn" type="reset" class="btn-primary-site">
-                                Clear
-                            </button>
-                        </div>
-                    </form>
-                    <button type="button" id="anotherSuggestionBtn" class="btn-primary-site" style="display:none; margin:20px auto 0;">
-                        Send Another Suggestion
-                    </button>
-                </div>
-            </div>
-        </section>
-
         <!-- Footer -->
         <footer id="footer">
             © 2026 Jacob Borrero. All rights reserved.
@@ -238,4 +194,3 @@
         </footer>
     </body> 
 </html>
-

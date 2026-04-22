@@ -1,7 +1,14 @@
 // Central data store for the application.
-// Contains quiz questions, music data, artist data, and page content in both English and Spanish.
+// This file does not control behavior directly. Instead, it stores the
+// content that the other scripts read when they need quiz questions, page
+// titles, section headings, and translated body text.
 
-// Quiz questions data
+// Quiz questions used by the quiz system.
+// Structure:
+// - top level language key (`english` or `spanish`)
+// - `questions` array for that language
+// - each question has an id, prompt text, answer options, the correct answer
+//   index, and an explanation shown after the user answers
 const quizData = {
     english: {
         questions: [
@@ -295,6 +302,13 @@ const quizData = {
 
 // Page content data
 // Localized page headings, subtitles, and body sections for history, music, art, and hurricane pages.
+// Main page text content used by `routing.js` when a user opens a normal
+// content page.
+// Structure:
+// - top level page id (`history`, `music`, `art`, `hurricane`)
+// - language object for each page
+// - each language object contains a title, subtitle, and an array of
+//   content sections with headings and paragraph text
 const pageContent = {
     history: {
         english: {
