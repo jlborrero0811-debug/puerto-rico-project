@@ -10,6 +10,7 @@ let currentLanguage = 'english';
 // and page titles in the current language.
 const translations = {
     english: {
+        // home page
         title: 'Puerto Rico',
         history: 'History',
         musiclabel: 'Music',
@@ -17,6 +18,7 @@ const translations = {
         artlabel: 'Artists',
         languageBtn: 'Español',
         footer: '© 2026 Jacob Borrero. All rights reserved.<div class="social-links"> <a href="mailto:jacob.borrero1@cttech.org" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://www.linkedin.com/in/jacob-borrero-ab4ba1368/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></div>',
+        // menu and navigation
         menu: 'Menu',
         close: "<i class='fa-solid fa-x'></i> Close",
         home: '<i class="fa fa-fw fa-home"></i> Home',
@@ -26,21 +28,15 @@ const translations = {
         navHurricane: "<i class='fa fa-cloud-showers-heavy'></i> Hurricane Maria",
         navQuiz: "<i class='fa fa-pencil'></i> Quiz",
         navAccount: "<i class='fa fa-user'></i> Account",
-        suggestionTitle: 'Suggest an Addition',
-        confirmationMessage: 'Thanks for your suggestion!',
-        nameLabel: 'Your Name',
-        suggestionLabel: 'Addition Suggestion',
-        commentsLabel: 'Additional Comments',
-        submitBtn: 'Submit Suggestion',
-        clearBtn: 'Clear',
-        anotherSuggestionBtn: 'Send Another Suggestion',
+        // pages
         historyTitle: 'History of Puerto Rico',
         historySubtitle: 'From Taíno civilization to modern times',
         musicTitle: 'Puerto Rican Music',
         artTitle: 'Puerto Rican Art',
         hurricaneTitle: 'Hurricane Maria',
         quizTitle: 'Puerto Rico Quiz',
-        accountTitle: 'Quiz Account',
+        accountTitle: 'Your <br> Account',
+        // quiz
         questionOf: 'Question',
         of: 'of',
         previous: 'Previous',
@@ -81,7 +77,7 @@ const translations = {
         artTitle: 'Arte Puertorriqueño',
         hurricaneTitle: 'Huracán María',
         quizTitle: 'Cuestionario de Puerto Rico',
-        accountTitle: 'Cuenta del Cuestionario',
+        accountTitle: 'Tu <br> Cuestionario',
         questionOf: 'Pregunta',
         of: 'de',
         previous: 'Anterior',
@@ -141,13 +137,13 @@ function changeLanguage() {
 
     const lang = translations[currentLanguage];
 
-    setLanguageText('historylabel', lang.history, false);
-    setLanguageText('musiclabel', lang.musiclabel, false);
-    setLanguageText('hurricanelabel', lang.hurricanelabel, false);
-    setLanguageText('artlabel', lang.artlabel, false);
+    setLanguageText('historylabel', lang.history, true);
+    setLanguageText('musiclabel', lang.musiclabel, true);
+    setLanguageText('hurricanelabel', lang.hurricanelabel, true);
+    setLanguageText('artlabel', lang.artlabel, true);
     setLanguageText('footer', lang.footer, true);
 
-    setLanguageText('menu', lang.menu, false);
+    setLanguageText('menu', lang.menu, true);
     setLanguageText('close', lang.close, true);
     setLanguageText('home', lang.home, true);
     setLanguageText('nav-history', lang.navHistory, true);
@@ -157,26 +153,26 @@ function changeLanguage() {
     setLanguageText('nav-quiz', lang.navQuiz, true);
     setLanguageText('nav-account', lang.navAccount, true);
 
-    setLanguageText('suggestionTitle', lang.suggestionTitle, false);
-    setLanguageText('confirmationMessage', lang.confirmationMessage, false);
-    setLanguageText('labelName', lang.nameLabel, false);
-    setLanguageText('labelSuggestion', lang.suggestionLabel, false);
-    setLanguageText('labelComments', lang.commentsLabel, false);
-    setLanguageText('submitBtn', lang.submitBtn, false);
-    setLanguageText('clearBtn', lang.clearBtn, false);
-    setLanguageText('anotherSuggestionBtn', lang.anotherSuggestionBtn, false);
+    setLanguageText('suggestionTitle', lang.suggestionTitle, true);
+    setLanguageText('confirmationMessage', lang.confirmationMessage, true);
+    setLanguageText('labelName', lang.nameLabel, true);
+    setLanguageText('labelSuggestion', lang.suggestionLabel, true);
+    setLanguageText('labelComments', lang.commentsLabel, true);
+    setLanguageText('submitBtn', lang.submitBtn, true);
+    setLanguageText('clearBtn', lang.clearBtn, true);
+    setLanguageText('anotherSuggestionBtn', lang.anotherSuggestionBtn, true);
 
-    setLanguageText('history-title', lang.historyTitle, false);
-    setLanguageText('history-subtitle', lang.historySubtitle, false);
-    setLanguageText('music-title', lang.musicTitle, false);
-    setLanguageText('music-subtitle', lang.musicSubtitle, false);
-    setLanguageText('art-title', lang.artTitle, false);
-    setLanguageText('art-subtitle', lang.artSubtitle, false);
+    setLanguageText('history-title', lang.historyTitle, true);
+    setLanguageText('history-subtitle', lang.historySubtitle, true);
+    setLanguageText('music-title', lang.musicTitle, true);
+    setLanguageText('music-subtitle', lang.musicSubtitle, true);
+    setLanguageText('art-title', lang.artTitle, true);
+    setLanguageText('art-subtitle', lang.artSubtitle, true);
     setLanguageText('hurricane-title', lang.hurricaneTitle, false);
-    setLanguageText('hurricane-subtitle', lang.hurricaneSubtitle, false);
-    setLanguageText('quiz-title', lang.quizTitle, false);
-    setLanguageText('quiz-subtitle', lang.quizSubtitle, false);
-    setLanguageText('account-title', lang.accountTitle, false);
+    setLanguageText('hurricane-subtitle', lang.hurricaneSubtitle, true);
+    setLanguageText('quiz-title', lang.quizTitle, true);
+    setLanguageText('quiz-subtitle', lang.quizSubtitle, true);
+    setLanguageText('account-title', lang.accountTitle, true);
 
     reloadActivePageContent();
 

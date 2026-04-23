@@ -261,17 +261,17 @@ function getQuizLabels() {
         return {
             profileTitle: 'Perfil del Jugador',
             attempts: 'Intentos',
-            highestScore: 'Puntaje Mãis Alto',
-            highestScores: 'Mejores Puntajes',
-            accuracy: 'Precisiãn',
+            highestScore: 'Puntuación Más Alta',
+            highestScores: 'Mejores Puntuaciones',
+            accuracy: 'Exactitud',
             achievementsUnlocked: 'logros desbloqueados',
             locked: 'Bloqueado',
             unlocked: 'Desbloqueado',
             unlockPrefix: 'Logro desbloqueado:',
             explanationPrefixCorrect: '¡Correcto!',
             explanationPrefixIncorrect: 'Incorrecto.',
-            noScores: 'Todavã no hay puntajes.',
-            scoreLine: 'Tu puntaje fue'
+            noScores: 'Aún no hay puntuaciones.',
+            scoreLine: 'Anotaste'
         };
     }
 
