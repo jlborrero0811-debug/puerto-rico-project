@@ -1,7 +1,7 @@
 // Simple page routing for the Puerto Rico website.
 // This file is in charge of changing what the user sees when they click
 // a card, a sidebar link, the Home button, or the browser back/forward buttons.
-// It also updates the URL and loads the correct page content after navigation.
+// It also updates the URL and loads the correct page content after navigation. 
 
 // This keeps track of which page is currently open.
 let currentPage = 'home';
