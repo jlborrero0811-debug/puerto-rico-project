@@ -9,18 +9,21 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css"> 
         <link rel="icon" href="images/home/flag.png"> 
-        <!-- JavaScript files that power the site -->
-        <script src="javascript/picchange.js" defer></script> 
-        <script src="javascript/spanish.js" defer></script> 
+        <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+        <!-- JavaScript -->
+        <script src="javascript/picchange.js" defer></script>
+        <script src="javascript/spanish.js" defer></script>
         <script src="javascript/sidebar.js" defer></script> 
         <script src="javascript/data.js" defer></script> 
+        <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+        <script src="javascript/map.js" defer></script>
         <script src="javascript/account.js" defer></script> 
         <script src="javascript/quiz.js" defer></script> 
-        <script src="javascript/routing.js" defer></script> 
-        <script src="javascript/suggestion.js" defer></script> 
+        <script src="javascript/routing.js" defer></script>
         <script src="javascript/fade.js" defer></script>
+        <script src="javascript/suggestion.js" defer></script>
         <script src="https://kit.fontawesome.com/4be9a25c93.js" crossorigin="anonymous"></script> 
-        
     </head>    
     <body>
         <!-- Sidebar menu used for navigation on every page -->
@@ -44,6 +47,9 @@
             <a href="javascript:void(0)" onclick="navigateToPage('hurricane')" id="nav-hurricane">
                 <i class="fa fa-cloud-showers-heavy"></i> Hurricane Maria
             </a>
+            <a href="javascript:void(0)" onclick="navigateToPage('map')" id="nav-map">
+                <i class="fa fa-map"></i> Map
+            </a>
             <a href="javascript:void(0)" onclick="navigateToPage('quiz')" id="nav-quiz">
                 <i class="fa fa-pencil"></i> Quiz
             </a>
@@ -51,12 +57,10 @@
                 <i class="fa fa-user"></i> Account
             </a>
         </div>
-
         <!-- Button that switches the site between English and Spanish -->
         <button class="language" onclick="changeLanguage()" id="languageBtn">
             Español
         </button>
-
         <!-- Main home page hero area shown above the cards -->
         <div class="hero-row">
             <img id="pic1" class="side-img" src="images/home/trumpetfacingright.png" alt="Left">
@@ -65,12 +69,10 @@
             </div>
             <img id="pic2" class="side-img" src="images/home/trumpetfacingleft.png" alt="Right">
         </div>
-
         <!-- Button that opens the sidebar menu -->
         <button class="sidebar" onclick="openSidebar()" aria-label="Open navigation menu">
             ☰
         </button>
-
         <!-- Home page cards that open the different sections -->
         <div class="page-grid">
             <div class="page-card" data-page="history" onclick="navigateToPage('history')">
@@ -89,8 +91,11 @@
                 <img src="images/home/hurricane.png" alt="hurricane">
                 <span id="hurricanelabel">Hurricane Maria</span>
             </div>
+            <div class="page-card" data-page="map" onclick="navigateToPage('map')">
+                <img src="images/home/oldsanjuandoors.png" alt="Map of Puerto Rico">
+                <span id="maplabel">Map</span>
+            </div>
         </div>
-
         <!-- Hidden page sections that are shown by JavaScript when opened -->
         <!-- History -->
         <div id="history" class="page">
@@ -106,7 +111,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Music -->
         <div id="music" class="page">
             <div class="hero-row">
@@ -121,7 +125,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Art -->
         <div id="art" class="page">
             <div class="hero-row">
@@ -136,7 +139,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Hurricane Maria -->
         <div id="hurricane" class="page">
             <div class="hero-row">
@@ -151,7 +153,45 @@
                 </div>
             </div>
         </div>
-
+        <!-- Map -->
+        <div class="page" id="map">
+            <div class="hero-row">
+                <img alt="Left" class="side-img" id="pic1" src="images/home/trumpetfacingright.png"/>
+                <div class="jumbotron">
+                    <h1 class="wepa" id="map-title">Puerto Rico Map</h1>
+                </div>
+                <img alt="Right" class="side-img" id="pic2" src="images/home/trumpetfacingleft.png"/>
+            </div>
+            <div class="container">
+                <div class="content-sections" id="map-content">
+                    <div class="content-sections">
+                        <div class="map-panel">
+                            <div class="map-card">
+                                <div id="puerto-rico-map" class="leaflet-pr-map"></div>
+                                <p class="map-instructions">
+                                    Click on one of the colored region on the map and choose a city below to explore.
+                                </p>
+                                <div class="map-legend" aria-label="Map color legend">
+                                    <div class="map-legend-item"><span class="legend-swatch legend-north"></span>North</div>
+                                    <div class="map-legend-item"><span class="legend-swatch legend-south"></span>South</div>
+                                    <div class="map-legend-item"><span class="legend-swatch legend-east"></span>East</div>
+                                    <div class="map-legend-item"><span class="legend-swatch legend-west"></span>West</div>
+                                    <div class="map-legend-item"><span class="legend-swatch legend-central"></span>Central</div>
+                                    <div class="map-legend-item"><span class="legend-swatch legend-metropolitan"></span>Metropolitan</div>
+                                </div>
+                            </div>
+                            <div class="map-info">
+                                <h3 id="map-region-name">Explore Puerto Rico</h3>
+                                <p id="map-region-description">
+                                    Discover the city regions on the Puerto Rico map.
+                                </p>
+                                <div class="map-region-buttons" id="map-region-buttons"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Quiz -->
         <div id="quiz" class="page">
             <div class="hero-row">
@@ -166,7 +206,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Account -->
         <div id="account" class="page">
             <div class="hero-row">
@@ -181,7 +220,52 @@
                 </div>
             </div>
         </div>
+        <!-- Suggestion Form -->
+        <section class="suggest-section">
+            <div class="suggest-card" id="suggestCard">
+                <div class="suggest-header" id="suggestionTitle">
+                    Suggest an Addition
+                </div>
+                <div class="confirm-banner" id="confirmationBanner">
+                    <div style="margin-bottom: 12px;" id="confirmationMessage">
+                        Thanks for your suggestion!
+                    </div>
+                </div>
+                <div class="suggest-body">
+                    <form id="suggestionForm" novalidate>
+                        <label id="labelName" for="name" class="suggest-label">
+                            Your Name
+                        </label>
 
+                        <input id="name" class="suggest-input" type="text" required placeholder="Enter your name">
+
+                        <label id="labelSuggestion" for="suggestion" class="suggest-label">
+                            Addition Suggestion
+                        </label>
+
+                        <input id="suggestion" class="suggest-input" type="text" required placeholder="What should be added?">
+
+                        <label id="labelComments" for="comments" class="suggest-label">
+                            Additional Comments
+                        </label>
+
+                        <input id="comments" class="suggest-input" type="text" placeholder="Why should it be added?">
+
+                        <div class="suggest-actions">
+                            <button id="submitBtn" type="submit" class="btn-primary-site">
+                                Submit Suggestion
+                            </button>
+                            <button id="clearBtn" type="reset" class="btn-primary-site">
+                                Clear
+                            </button>
+                        </div>
+                    </form>
+                    <button type="button" id="anotherSuggestionBtn" class="btn-primary-site" style="display:none; margin:20px auto 0;">
+                        Send Another Suggestion
+                    </button>
+                </div>
+            </div>
+        </section>
         <!-- Footer -->
         <footer id="footer">
             © 2026 Jacob Borrero. All rights reserved.

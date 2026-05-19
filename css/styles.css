@@ -1,10 +1,7 @@
-/* Main styles for the project.
-   This file controls the layout, colors, spacing, cards, quiz, account page,
-   and responsive behavior for the whole site. */
+﻿/* Style for Junior Project */
 
-/* Base page styles.
-   These rules affect the whole page before the more specific sections below. */
-* { 
+/* Home Page */
+* {
     transition: all 0.25s ease; 
 } 
 body {
@@ -45,7 +42,7 @@ span {
     font-family: 'DTMFFont'; 
     letter-spacing: 2.5px; 
 } 
-/* Footer area shown at the bottom of the page */
+/* Footer */
 footer {
     background: #50C2F7;
     border-top: 1px solid #c2c2c2;
@@ -63,7 +60,7 @@ footer {
     font-size: 1.3rem;
     text-decoration: none;
 }
-/* Shared button styles used across the site */
+/* buttons */
 button {
     position: relative;
     background: #FF6B6B;
@@ -127,8 +124,7 @@ button:hover {
 .sidebar-menu a:hover {
     background: #FF6B6B;
 }
-.sidebar-menu a.active-page,
-.sidebar-menu a[aria-current="page"] {
+.sidebar-menu a.active-page {
     background: linear-gradient(90deg, #FFD166 0 8px, #FF6B6B 8px 100%) !important;
     color: #ffffff !important;
     padding-left: 26px;
@@ -154,7 +150,97 @@ button:hover {
     user-select: none;
     opacity: 1;
     height: auto;
-} 
+}         
+/* Suggestion Form */
+.suggest-section {
+    width: 80%;
+    margin: 40px auto;
+    opacity: 1;
+    transform: none;
+}
+
+.suggest-card {
+    background: #0B3C5D;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px #0b3c5d59;
+    overflow: hidden;
+    color: #f7f7f7;
+}
+
+.suggest-header {
+    background: #FF6B6B;
+    color: #FFD166;
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+    font-family: 'DTMFFont';
+    letter-spacing: 2px;
+    font-size: 1.6rem;
+}
+
+.suggest-body {
+    padding: 24px;
+}
+
+.suggest-label {
+    display: block;
+    font-family: 'DTMFFont';
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    color: #FFD166;
+}
+
+.suggest-input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: #EAD7B7;
+    color: #222;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 6px #00000026;
+}
+
+.suggest-input::placeholder {
+    color: #6b5f52;
+}
+
+.suggest-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-primary-site {
+    position: static;
+    background: #50C2F7;
+    color: #f7f7f7;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'DTMFFont';
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 12px #00000040;
+}
+
+.btn-primary-site:hover {
+    background: #ffabc0;
+    transform: translateY(-2px);
+}
+
+.confirm-banner {
+    display: none;
+    padding: 18px;
+    font-size: 30px;
+    background: #0B3C5D;
+    color: #FFD166;
+    text-align: center;
+    font-family: 'DTMFFont';
+    letter-spacing: 1.5px;
+}
 /* Page Cards */
 .page-grid {
     display: grid;
@@ -219,8 +305,97 @@ button:hover {
     transform: translateX(8px) scale(1.03);
     box-shadow: 0 18px 40px #093755;
 }
+/* Suggestion Form */
+.suggest-section {
+    width: 80%;
+    margin: 40px auto;
+    opacity: 1;
+    transform: none;
+}
 
-/* Pages */
+.suggest-card {
+    background: #0B3C5D;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px #0b3c5d59;
+    overflow: hidden;
+    color: #f7f7f7;
+}
+
+.suggest-header {
+    background: #FF6B6B;
+    color: #FFD166;
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+    font-family: 'DTMFFont';
+    letter-spacing: 2px;
+    font-size: 1.6rem;
+}
+
+.suggest-body {
+    padding: 24px;
+}
+
+.suggest-label {
+    display: block;
+    font-family: 'DTMFFont';
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    color: #FFD166;
+}
+
+.suggest-input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: #EAD7B7;
+    color: #222;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 6px #00000026;
+}
+
+.suggest-input::placeholder {
+    color: #6b5f52;
+}
+
+.suggest-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-primary-site {
+    position: static;
+    background: #50C2F7;
+    color: #f7f7f7;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'DTMFFont';
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 12px #00000040;
+}
+
+.btn-primary-site:hover {
+    background: #ffabc0;
+    transform: translateY(-2px);
+}
+
+.confirm-banner {
+    display: none;
+    padding: 18px;
+    font-size: 30px;
+    background: #0B3C5D;
+    color: #FFD166;
+    text-align: center;
+    font-family: 'DTMFFont';
+    letter-spacing: 1.5px;
+}
+
 .page {
     display: none;
     opacity: 0;
@@ -270,10 +445,12 @@ button:hover {
 }
 
 .content-section p {
+    font-family: Arial;
     line-height: 1.6;
     margin-bottom: 16px;
 }
 
+/* Quiz */
 .quiz-container {
     max-width: 960px;
     margin: 0 auto;
@@ -316,7 +493,6 @@ button:hover {
     border-radius: 999px;
     font-size: 0.9rem;
 }
-/* Quiz */
 .quiz-question {
     padding: 24px;
     margin-bottom: 20px;
@@ -419,6 +595,19 @@ button:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    background: #50C2F7;
+    color: #f7f7f7;
+}
+
+#next-btn,
+#prev-btn {
+    background: #50C2F7;
+    color: #f7f7f7;
+}
+#next-btn:hover,
+#prev-btn:hover,
+#retake-btn:hover {
+    background: #b59ee3;
 }
 /* Quiz Stats */
 .quiz-stats-grid {
@@ -580,7 +769,7 @@ button:hover {
     line-height: 1.4;
 }
 
-/* Main font */
+/*  The Main Font */
 @font-face {
     font-family: 'DTMFFont';
     src: url('fonts/DtMF.ttf') format('truetype');
@@ -654,6 +843,169 @@ button:hover {
     }
 }
 
+/* Map Styles */
+.map-card {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 18px;
+}
+
+.leaflet-pr-map {
+    width: 100%;
+    height: 520px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #d9eef7;
+}
+
+.map-region {
+    fill: rgba(255, 166, 102, 0.2);
+    stroke: #FFD166;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.map-region:hover {
+    fill: rgba(255, 166, 102, 0.4);
+}
+
+.map-region.selected {
+    fill: rgba(255, 107, 107, 0.5);
+}
+
+.map-outline {
+    fill: none;
+    stroke: #FFD166;
+    stroke-width: 5;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.map-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+.map-instructions {
+    text-align: center;
+    color: #555;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 14px;
+    margin-top: 14px;
+}
+
+.map-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #222;
+    font-size: 0.9rem;
+}
+
+.legend-swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 1px 4px #0000004d;
+}
+
+.legend-north {
+    background: #FF6B6B;
+}
+
+.legend-south {
+    background: #4ECDC4;
+}
+
+.legend-east {
+    background: #45B7D1;
+}
+
+.legend-west {
+    background: #FFA07A;
+}
+
+.legend-central {
+    background: #FFD93D;
+}
+
+.legend-metropolitan {
+    background: #95E1D3;
+}
+
+.map-info {
+    background: #0B3C5D;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 8px 24px #0b3c5d59;
+    color: #f7f7f7;
+}
+
+.map-info h3 {
+    color: #FFD166;
+    font-family: 'DTMFFont';
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    border-bottom: 4px solid #FF6B6B;
+    padding-bottom: 8px;
+}
+
+.map-info p {
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.map-region-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.map-region-buttons button {
+    background: #50C2F7;
+    color: #f7f7f7;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+.map-region-buttons button.active {
+    background: #FF6B6B;
+}
+
+.map-details-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.map-details-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #2f5a78;
+}
+
+.map-details-list li:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 900px) {
+    .map-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 420px) {
     .side-img {
         width: 80px;
@@ -673,5 +1025,3 @@ button:hover {
         bottom: 12px;
     }
 }
-
-

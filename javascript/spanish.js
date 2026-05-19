@@ -9,7 +9,7 @@ let currentLanguage = 'english';
 // Different files read from this object when they need button labels,
 // menu text, quiz text, or page titles.
 const translations = {
-    english: {
+    english: { 
         // Home page
         title: 'Puerto Rico',
         history: 'History',
@@ -18,6 +18,15 @@ const translations = {
         artlabel: 'Artists',
         languageBtn: 'Español',
         footer: '© 2026 Jacob Borrero. All rights reserved.<div class="social-links"> <a href="mailto:jacob.borrero1@cttech.org" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://www.linkedin.com/in/jacob-borrero-ab4ba1368/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></div>',
+        // Suggestion form
+        suggestionTitle: 'Suggest an Addition',
+        confirmationMessage: 'Thanks for your suggestion!',
+        nameLabel: 'Your Name',
+        suggestionLabel: 'Addition Suggestion',
+        commentsLabel: 'Additional Comments',
+        submitBtn: 'Submit Suggestion',
+        clearBtn: 'Clear',
+        anotherSuggestionBtn: 'Send Another Suggestion',
         // Menu and navigation
         menu: 'Menu',
         close: "<i class='fa-solid fa-x'></i> Close",
@@ -48,6 +57,7 @@ const translations = {
         retakeQuiz: 'Retake Quiz'
     },
     spanish: {
+        // Home page
         title: 'Puerto Rico',
         history: 'Historia',
         musiclabel: 'Música',
@@ -55,6 +65,16 @@ const translations = {
         artlabel: 'Artistas',
         languageBtn: 'English',
         footer: '© 2026 Jacob Borrero. Reservados todos los derechos.<div class="social-links"> <a href="mailto:jacob.borrero1@cttech.org" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://www.linkedin.com/in/jacob-borrero-ab4ba1368/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></div>',
+        // Suggestion form
+        suggestionTitle: 'Sugerir una Adición',
+        confirmationMessage: '¡Gracias por tu sugerencia!',
+        nameLabel: 'Tu Nombre',
+        suggestionLabel: 'Sugerencia de Adición',
+        commentsLabel: 'Comentarios Adicionales',
+        submitBtn: 'Enviar Sugerencia',
+        clearBtn: 'Limpiar',
+        anotherSuggestionBtn: 'Send Another Suggestion',
+        // Menu and navigation
         menu: 'Menú',
         close: "<i class='fa-solid fa-x'></i> Cerrar",
         home: '<i class="fa fa-fw fa-home"></i> Inicio',
@@ -64,20 +84,14 @@ const translations = {
         navHurricane: "<i class='fa fa-cloud-showers-heavy'></i> Huracán María",
         navQuiz: "<i class='fa fa-pencil'></i> Cuestionario",
         navAccount: "<i class='fa fa-user'></i> Cuenta",
-        suggestionTitle: 'Sugerir una Adición',
-        confirmationMessage: '¡Gracias por tu sugerencia!',
-        nameLabel: 'Tu Nombre',
-        suggestionLabel: 'Sugerencia de Adición',
-        commentsLabel: 'Comentarios Adicionales',
-        submitBtn: 'Enviar Sugerencia',
-        clearBtn: 'Limpiar',
-        anotherSuggestionBtn: 'Enviar Otra Sugerencia',
+        // Page titles
         historyTitle: 'Historia de Puerto Rico',
         musicTitle: 'Música Puertorriqueña',
         artTitle: 'Arte Puertorriqueño',
         hurricaneTitle: 'Huracán María',
         quizTitle: 'Cuestionario de Puerto Rico',
         accountTitle: 'Tu <br> Cuestionario',
+        // Quiz text
         questionOf: 'Pregunta',
         of: 'de',
         previous: 'Anterior',
@@ -122,6 +136,8 @@ function reloadActivePageContent() {
         loadQuizContent();
     } else if (activePage.id === 'account') {
         loadAccountContent();
+    } else if (activePage.id === 'map') {
+        loadMapContent();
     } else {
         loadStandardContent(activePage.id);
     }

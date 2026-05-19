@@ -11,7 +11,7 @@ function startImageCycle(leftId, rightId, leftImages, rightImages) {
     let leftIndex = 0;
     let rightIndex = 0;
 
-    if (!leftElement || !rightElement) {
+    if (!leftElement || !rightElement) { 
         return;
     }
 

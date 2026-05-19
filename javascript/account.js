@@ -7,7 +7,7 @@
 const PROFILE_STORAGE_KEY = 'userProfile';
 // These numbers are shared with the quiz code so both files agree
 // on how many questions are in a quiz and how many top scores to keep.
-const MAX_QUIZ_QUESTIONS = 10;
+const MAX_QUIZ_QUESTIONS = 10; 
 const MAX_HIGH_SCORES = 5;
 
 // This list defines every achievement in the site.

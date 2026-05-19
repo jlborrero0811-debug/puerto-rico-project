@@ -12,7 +12,7 @@ if (yearElement) {
 }
 
 // Fade the whole page out, then run the next step after the fade finishes.
-// The callback is usually a navigation function from `routing.js`.
+// The callback is usually a navigation function from `routing.js`. 
 function fadeOut(callback) {
     document.body.style.transition = 'opacity 0.4s';
     document.body.style.opacity = '0';

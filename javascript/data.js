@@ -312,6 +312,129 @@ const quizData = {
 // - language object for each page
 // - each language object contains a title, subtitle, and an array of
 //   content sections with headings and paragraph text
+const mapRegions = {
+    north: {
+        english: {
+            name: "Northern Coast",
+            description: "The north coast includes San Juan and the historic old city. It is known for beaches, forts, and vibrant city life.",
+            details: [
+                "Includes San Juan, the capital and historic district Old San Juan.",
+                "Famous for Condado Beach, El Morro, and Paseo de la Princesa.",
+                "Home to many festivals, Puerto Rican cuisine, and lively nightlife."
+            ]
+        },
+        spanish: {
+            name: "Costa Norte",
+            description: "La costa norte incluye San Juan y la ciudad histórica. Es conocida por sus playas, fortalezas y vida urbana vibrante.",
+            details: [
+                "Incluye San Juan, la capital y el distrito histórico Viejo San Juan.",
+                "Famosa por la playa de Condado, El Morro y el Paseo de la Princesa.",
+                "Es hogar de muchos festivales, la cocina puertorriqueña y la vida nocturna." 
+            ]
+        }
+    },
+    northeast: {
+        english: {
+            name: "Northeast Forests",
+            description: "The northeast includes El Yunque National Forest and the lush rainforest region with waterfalls and hiking trails.",
+            details: [
+                "Home to El Yunque, the only tropical rainforest in the U.S. National Forest System.",
+                "Known for waterfalls, green mountains, and hiking paths.",
+                "Popular for eco-tourism and birdwatching." 
+            ]
+        },
+        spanish: {
+            name: "Bosques del Noreste",
+            description: "El noreste incluye el Bosque Nacional El Yunque y la región de selva tropical con cascadas y rutas de senderismo.",
+            details: [
+                "Es hogar de El Yunque, la única selva tropical en el Sistema Nacional de Bosques de EE.UU.",
+                "Conocido por sus cascadas, montañas verdes y rutas de senderismo.",
+                "Popular para el ecoturismo y la observación de aves." 
+            ]
+        }
+    },
+    east: {
+        english: {
+            name: "Eastern Shore",
+            description: "The east is famous for Fajardo, lush forests, and water sports. It is a gateway to the islands of Culebra and Vieques.",
+            details: [
+                "Departures for the islands of Culebra and Vieques are often from Fajardo.",
+                "Excellent area for snorkeling, kayaking, and bioluminescent bay tours.",
+                "Also known for coastal views and historic lighthouse sites." 
+            ]
+        },
+        spanish: {
+            name: "Costa Este",
+            description: "El este es famoso por Fajardo, sus bosques exuberantes y deportes acuáticos. Es la puerta de entrada a las islas Culebra y Vieques.",
+            details: [
+                "Las salidas hacia Culebra y Vieques suelen ser desde Fajardo.",
+                "Excelente zona para esnórquel, kayak y tours de bahías bioluminiscentes.",
+                "También es conocida por sus vistas costeras y faros históricos." 
+            ]
+        }
+    },
+    south: {
+        english: {
+            name: "Southern Coast",
+            description: "The south includes Ponce and a warm tropical climate. It is known for cultural festivals, art, and historic plazas.",
+            details: [
+                "Ponce is called La Perla del Sur and has beautiful plazas and colonial architecture.",
+                "The area is famous for carnival celebrations and artisan crafts.",
+                "There are also coastal parks and beaches popular with locals." 
+            ]
+        },
+        spanish: {
+            name: "Costa Sur",
+            description: "El sur incluye Ponce y un clima tropical cálido. Es conocido por festivales culturales, arte y plazas históricas.",
+            details: [
+                "Ponce se llama La Perla del Sur y tiene hermosas plazas y arquitectura colonial.",
+                "La zona es famosa por sus celebraciones de carnaval y artesanías.",
+                "También cuenta con parques costeros y playas populares entre los locales." 
+            ]
+        }
+    },
+    west: {
+        english: {
+            name: "Western Region",
+            description: "The west includes Mayagüez and rural towns where agriculture, music, and coastal sunsets are important.",
+            details: [
+                "Mayagüez is a university city known for its agricultural history.",
+                "The western coast offers surf beaches and fishing villages.",
+                "Local music and food culture are strong in this region." 
+            ]
+        },
+        spanish: {
+            name: "Región Oeste",
+            description: "El oeste incluye Mayagüez y pueblos rurales donde la agricultura, la música y las puestas de sol en la costa son importantes.",
+            details: [
+                "Mayagüez es una ciudad universitaria conocida por su historia agrícola.",
+                "La costa oeste ofrece playas para surf y pueblos de pesca.",
+                "La música local y la cultura gastronómica son fuertes en esta región." 
+            ]
+        }
+    },
+    interior: {
+        english: {
+            name: "Central Mountains",
+            description: "The interior mountains are home to El Yunque and coffee farms. This area is cooler and full of rivers and forests.",
+            details: [
+                "The central mountain region is famous for coffee plantations and cooler weather.",
+                "Rivers like Río Grande de Loíza run through the hills.",
+                "It is a great place to learn about Puerto Rico's natural environment and agriculture." 
+            ]
+        },
+        spanish: {
+            name: "Montañas Centrales",
+            description: "Las montañas centrales albergan El Yunque y fincas de café. Esta zona es más fresca y está llena de ríos y bosques.",
+            details: [
+                "La región montañosa central es famosa por las plantaciones de café y el clima más fresco.",
+                "Ríos como el Río Grande de Loíza atraviesan las colinas.",
+                "Es un gran lugar para aprender sobre el medio ambiente natural y la agricultura de Puerto Rico." 
+            ]
+        }
+    }
+};
+
 const pageContent = {
     // History page
     history: {

@@ -1,6 +1,4 @@
 // This file opens and closes the sidebar menu.
-// The HTML uses `onclick` attributes, so these functions need to be
-// available on `window` for the buttons and links to call them.
 
 // Open the sidebar by adding the class that moves it on screen.
 function openSidebar() {
@@ -17,7 +15,7 @@ function closeSidebar() {
     const sidebar = document.getElementById('sidebar');
 
     // Remove the class so the sidebar closes.
-    if (sidebar) {
+    if (sidebar) { 
         sidebar.classList.remove('sidebar-open');
     }
 }

@@ -9,7 +9,7 @@ let currentPage = 'home';
 let firstLoad = true;
 
 // These are the only page names the site should ever allow.
-const validPages = ['home', 'history', 'music', 'art', 'hurricane', 'quiz', 'account'];
+const validPages = ['home', 'history', 'music', 'art', 'map', 'hurricane', 'quiz', 'account']; 
 
 // Clean up a page name before using it.
 // This lets the function handle values like "#quiz", "quiz.html",
@@ -129,6 +129,11 @@ function loadPageContent(pageName) {
 
     if (pageName === 'account') {
         loadAccountContent();
+        return;
+    }
+
+    if (pageName === 'map') {
+        loadMapContent();
         return;
     }
 
