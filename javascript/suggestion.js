@@ -4,7 +4,7 @@
 
 // Wait for the DOM before wiring up the form and buttons.
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('suggestionForm');
+    const form = document.getElementById('suggestionForm'); 
     const submitBtn = document.getElementById('submitBtn');
     const anotherSuggestionBtn = document.getElementById('anotherSuggestionBtn');
 
