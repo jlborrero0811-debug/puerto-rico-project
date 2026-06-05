@@ -28,7 +28,7 @@ function getAchievementAudio() {
 function playAchievementSound() {
     try {
         const audio = getAchievementAudio().cloneNode(true);
-        audio.volume = 1.0;
+        audio.volume = 0.7;
         audio.currentTime = 0;
 
         const playPromise = audio.play();
