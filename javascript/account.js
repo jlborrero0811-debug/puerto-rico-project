@@ -7,21 +7,39 @@
 const PROFILE_STORAGE_KEY = 'userProfile';
 // These numbers are shared with the quiz code so both files agree
 // on how many questions are in a quiz and how many top scores to keep.
-const MAX_QUIZ_QUESTIONS = 10; 
+const MAX_QUIZ_QUESTIONS = 10;
 const MAX_HIGH_SCORES = 5;
+const TOTAL_VISITED_CITIES = 73;
 
 // Sound effect used when an achievement is unlocked.
 const ACHIEVEMENT_SOUND_SRC = 'sfx/steam-achievement.mp3';
+let achievementAudio = null;
+
+function getAchievementAudio() {
+    if (!achievementAudio) {
+        achievementAudio = new Audio(ACHIEVEMENT_SOUND_SRC);
+        achievementAudio.preload = 'auto';
+        achievementAudio.volume = 0.7;
+    }
+
+    return achievementAudio;
+}
 
 function playAchievementSound() {
     try {
-        const audio = new Audio(ACHIEVEMENT_SOUND_SRC);
-        audio.volume = 0.7;
-        audio.play().catch(function (error) {
-            console.log('Could not play achievement sound:', error);
-        });
+        const audio = getAchievementAudio().cloneNode(true);
+        audio.volume = 1.0;
+        audio.currentTime = 0;
+
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(function (error) {
+                console.log('Could not play achievement sound:', error);
+            });
+        }
     } catch (error) {
-        console.log('Error creating audio:', error);
+        console.log('Error playing achievement sound:', error);
     }
 }
 
@@ -268,11 +286,11 @@ function getVisitedCitiesCount(profile) {
     return profile.visitedCities ? profile.visitedCities.length : 0;
 }
 
-// Get the percentage of cities visited (out of 81 total).
+// Get the percentage of cities visited.
 function getCitiesVisitedPercentage(profile) {
-    const visited = getVisitedCitiesCount(profile);
-    const total = 73; // Total number of cities in the quiz
-    return Math.round((visited / total) * 100);
+    const visited = Math.min(getVisitedCitiesCount(profile), TOTAL_VISITED_CITIES);
+    const percentage = Math.round((visited / TOTAL_VISITED_CITIES) * 100);
+    return Math.min(100, percentage);
 }
 
 // Build all of the achievement cards shown on the account page.
@@ -315,7 +333,7 @@ function buildProfileMarkup() {
         topScores = profile.highestScores.join(', ');
     }
 
-    const visitedCount = getVisitedCitiesCount(profile);
+    const visitedCount = Math.min(getVisitedCitiesCount(profile), TOTAL_VISITED_CITIES);
     const percentage = getCitiesVisitedPercentage(profile);
 
     return `
@@ -346,7 +364,7 @@ function buildProfileMarkup() {
                 <div class="cities-visited-header">
                     <h4>${labels.citiesVisited}</h4>
                 </div>
-                <div class="cities-visited-counter">${visitedCount}/73</div>
+                <div class="cities-visited-counter">${visitedCount}/${TOTAL_VISITED_CITIES}</div>
                 <div class="progress-bar-container">
                     <div class="progress-bar" style="width: ${percentage}%"></div>
                 </div>
@@ -413,12 +431,13 @@ function showAchievementAnimation(achievement, delay) {
         </div>
     `;
 
+    playAchievementSound();
+
     setTimeout(function () {
         document.body.appendChild(toast);
 
         requestAnimationFrame(function () {
             toast.classList.add('show');
-            playAchievementSound();
         });
 
         setTimeout(function () {
