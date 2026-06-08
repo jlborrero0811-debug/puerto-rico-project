@@ -123,7 +123,7 @@ function initializeQuiz(restoreSavedState = true) {
     currentQuizQuestions = shuffleArray(allQuestions).slice(0, MAX_QUIZ_QUESTIONS);
     currentQuizQuestion = 0;
     quizAnswers = [];
-    clearQuizState();
+    saveQuizState();
 }
 
 // Count how many answers the user got correct.

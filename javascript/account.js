@@ -28,7 +28,7 @@ function getAchievementAudio() {
 function playAchievementSound() {
     try {
         const audio = getAchievementAudio().cloneNode(true);
-        audio.volume = 0.7;
+        audio.volume = 1.0;
         audio.currentTime = 0;
 
         const playPromise = audio.play();
@@ -105,6 +105,20 @@ const achievementDefinitions = [
         title: { english: 'Quiz Veteran', spanish: 'Veterano del Cuestionario' },
         description: { english: 'Complete 10 quiz attempts.', spanish: 'Completa 10 intentos del cuestionario.' },
         isUnlocked: function (profile) { return profile.attempts >= 10; }
+    },
+    {
+        id: 'capital-visit',
+        icon: 'fa-landmark',
+        title: { english: 'Capital Visit', spanish: 'Visita a la Capital' },
+        description: { english: 'Visit San Juan.', spanish: 'Visita San Juan.' },
+        isUnlocked: function (profile) { return profile.visitedCities.includes('pr-sj'); }
+    },
+    {
+        id: 'city-explorer',
+        icon: 'fa-globe',
+        title: { english: 'City Explorer', spanish: 'Explorador de Ciudades' },
+        description: { english: 'Visit all 73 cities.', spanish: 'Visita todas las 73 ciudades.' },
+        isUnlocked: function (profile) { return getVisitedCitiesCount(profile) >= TOTAL_VISITED_CITIES; }
     }
 ];
 
@@ -166,6 +180,17 @@ function normalizeAchievements(list) {
     return result;
 }
 
+// Clean the visited cities list to remove duplicates.
+// This ensures each city is only counted once.
+function normalizeVisitedCities(list) {
+    if (!Array.isArray(list)) {
+        return [];
+    }
+
+    // Use a Set to remove duplicates, then convert back to array
+    return Array.from(new Set(list));
+}
+
 // Make sure a loaded profile always has safe values and the full shape we expect.
 // This protects the rest of the code from broken or missing saved data.
 function normalizeProfile(profile) {
@@ -180,7 +205,7 @@ function normalizeProfile(profile) {
         highestScores: normalizeHighestScores(safe.highestScores),
         perfectScores: Number(safe.perfectScores) || 0,
         achievements: normalizeAchievements(safe.achievements),
-        visitedCities: Array.isArray(safe.visitedCities) ? safe.visitedCities : []
+        visitedCities: normalizeVisitedCities(safe.visitedCities)
     };
 }
 
@@ -272,12 +297,22 @@ function getAchievementText(achievement, field) {
 }
 
 // Mark a city as visited and save the profile.
+// This also checks for any newly unlocked achievements and shows them.
 function markCityVisited(cityId) {
     const profile = loadProfile();
-    
+    // Only add the city if it hasn't been visited before
     if (!profile.visitedCities.includes(cityId)) {
         profile.visitedCities.push(cityId);
         saveProfile(profile);
+        
+        // Check for newly unlocked achievements after visiting a city
+        const newUnlocks = unlockAchievements(profile);
+        if (newUnlocks.length > 0) {
+            saveProfile(profile);
+            newUnlocks.forEach(function (achievement, index) {
+                showAchievementAnimation(achievement, index * 500);
+            });
+        }
     }
 }
 
@@ -298,7 +333,7 @@ function getCitiesVisitedPercentage(profile) {
 function buildAchievementMarkup(profile) {
     const labels = getQuizLabels();
     let html = '';
-
+    // Loop through every achievement and check if it's unlocked.
     for (let i = 0; i < achievementDefinitions.length; i++) {
         const achievement = achievementDefinitions[i];
         const unlocked = profile.achievements.indexOf(achievement.id) !== -1;
