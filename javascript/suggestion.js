@@ -56,7 +56,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Build the full GET request URL expected by the Google Apps Script
         // backend that stores the submission data.
-        const fullURL = 'https://script.google.com/macros/s/AKfycbw15mF1Oik5qbwytc36ryT4Z1Gx3PMug0rf_JO3pZlTGv_nPo-wTz-EjVmiiCSZuBn8/exec?Name=' + name + '&Suggestion=' + suggestion + '&Comments=' + comments;
+        const fullURL = 'https://script.google.com/macros/s/AKfycbxVXlzGmeQDGwu8Trx9NZsSURPQ5XJdEMP2glflNuJvf2R5zDEU6tjrRlCo6FxODzXn/exec'
+            + '?name=' + name
+            + '&suggestion=' + suggestion
+            + '&comments=' + comments;
 
         try {
             // Send the suggestion to the backend and read the returned text.
